@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#controls-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.slider-fg {
+  background: #89b4fa !important;
+}
