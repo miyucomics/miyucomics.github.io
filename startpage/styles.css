@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #181825;
+    background: #11111b;
 }
 
 #container {
@@ -25,8 +25,7 @@ body {
     width: 25%;
     height: 40%;
     border-radius: 10px;
-    box-shadow: 0px 0px 5px 0px #89b4fa;
-    background: #1e1e2e;
+    box-shadow: 0px 0px 25px rgba(137, 180, 250, 0.1);
 }
 
 #greeter {
@@ -54,8 +53,12 @@ body {
     font-weight: bolder;
 }
 
+.material-symbols-rounded {
+    font-size: 13px;
+    padding-right: 5px;
+}
+
 .link {
-    transition: all 0.25s;
     list-style-type: none;
     text-decoration: none;
 }
@@ -90,4 +93,8 @@ body {
 
 input::placeholder {
     color: #585b70;
+}
+
+.searched {
+    color: #89b4fa;
 }
