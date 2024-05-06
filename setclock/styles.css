@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #181825;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container {
+    width: calc(100% - 4px);
+    height: calc((100% - 20px) / 5);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fragment {
+    background-color: #1e1e2e;
+    width: calc((100% - 16px) / 4);
+    height: 100%;
+    transition: all 0.25s;
+}
+
+#heavenly-minutes-container .fragment {
+    width: calc((100% - 44px) / 11);
+}
+
+#sun {
+    width: calc(100% - 4px);
+}
+
+.fragment.active {
+    background-color: #89b4fa;
+}
