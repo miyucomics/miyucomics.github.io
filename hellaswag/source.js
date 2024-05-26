@@ -15,6 +15,7 @@ function prepareQuestion(scene) {
 	idLabel.innerText = "#" + scene.ind
 	descriptionLabel.innerText = scene.ctx
 	for (let i = 0; i < 4; i++) {
+		answerChoiceContainers[i].style.borderColor = "#9399b2"
 		answerChoices[i].innerText = scene.endings[i]
 	}
 	correctAnswer = scene.label
@@ -23,6 +24,8 @@ function prepareQuestion(scene) {
 function validateAnswer(answer) {
 	if (answer == correctAnswer) {
 		prepareQuestion(scenes[Math.floor(Math.random() * scenes.length)])
+	} else {
+		answerChoiceContainers[answer].style.borderColor = "#f38ba8"
 	}
 }
 
