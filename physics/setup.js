@@ -14,7 +14,7 @@ const possible_colours = [
   "#89b4fa",
   "#b4befe",
 ];
-const wall_thickness = 1000;
+const wall_thickness = 10;
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
