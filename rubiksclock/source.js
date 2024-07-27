@@ -1,24 +1,26 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import * as THREE from "three"
+import { TrackballControls } from "three/addons/controls/TrackballControls.js"
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
+const scene = new THREE.Scene()
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
 camera.position.z = 15
 
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.setClearColor(0x181825, 1)
+renderer.setClearColor(0x11111b)
 renderer.setAnimationLoop(animate)
 document.body.appendChild(renderer.domElement)
 
-const controls = new OrbitControls(camera, renderer.domElement)
-controls.enableDamping = true
+const controls = new TrackballControls(camera, renderer.domElement)
+controls.rotateSpeed = 25
 
-const geometry = new THREE.CylinderGeometry(5, 5, 0.5, 128)
-const material = new THREE.MeshStandardMaterial({ color: 0xcdd6f4 })
-scene.add(new THREE.Mesh(geometry, material))
-
-scene.add(new THREE.AmbientLight(0x404040))
+function addCylinder(x, y, z, radius, height, color) {
+    const geometry = new THREE.CylinderGeometry(radius, radius, height, 128)
+    const material = new THREE.MeshStandardMaterial({ color: color })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(x, y, z)
+    scene.add(mesh)
+}
 
 function addLight (x, y, z) {
     const light = new THREE.PointLight(0xffffff, 100, 100)
@@ -26,12 +28,18 @@ function addLight (x, y, z) {
     scene.add(light)
 }
 
-addLight(25, 0, 0)
-addLight(-25, 0, 0)
-addLight(0, 25, 0)
-addLight(0, -25, 0)
-addLight(0, 0, 25)
-addLight(0, 0, -25)
+addLight(10, 0, 0)
+addLight(-10, 0, 0)
+addLight(0, 10, 0)
+addLight(0, -10, 0)
+addLight(0, 0, 10)
+addLight(0, 0, -10)
+
+const bodyRadius = 5
+const bodyThickness = 0.4
+
+addCylinder(0, bodyThickness / 4, 0, bodyRadius, bodyThickness / 2, 0xcdd6f4)
+addCylinder(0, -bodyThickness / 4, 0, bodyRadius, bodyThickness / 2, 0x1e1e2e)
 
 function animate() {
 	controls.update()
