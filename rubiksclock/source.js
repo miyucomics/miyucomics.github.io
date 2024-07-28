@@ -6,10 +6,11 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 camera.position.y = 10
 camera.position.z = 15
 
-const renderer = new THREE.WebGLRenderer()
+const renderer = new THREE.WebGLRenderer({ antialias: true })
+renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.setClearColor(0x11111b)
-renderer.setAnimationLoop(animate)
+renderer.setAnimationLoop(render)
 document.body.appendChild(renderer.domElement)
 
 const controls = new TrackballControls(camera, renderer.domElement)
@@ -43,8 +44,21 @@ const bodyThickness = 0.75
 addCylinder(0, bodyThickness / 4, 0, bodyRadius, bodyThickness / 2, 0xf9e2af)
 addCylinder(0, -bodyThickness / 4, 0, bodyRadius, bodyThickness / 2, 0x89b4fa)
 
+const clockRadius = 1
+const clockHeight = 1
+const clockSpacing = 2.5
+addCylinder(-clockSpacing, 0, -clockSpacing, clockRadius, clockHeight, 0xcba6f7)
+addCylinder(0, 0, -clockSpacing, clockRadius, clockHeight, 0xcba6f7)
+addCylinder(clockSpacing, 0, -clockSpacing, clockRadius, clockHeight, 0xcba6f7)
+addCylinder(-clockSpacing, 0, 0, clockRadius, clockHeight, 0xcba6f7)
+addCylinder(0, 0, 0, clockRadius, clockHeight, 0xcba6f7)
+addCylinder(clockSpacing, 0, 0, clockRadius, clockHeight, 0xcba6f7)
+addCylinder(-clockSpacing, 0, clockSpacing, clockRadius, clockHeight, 0xcba6f7)
+addCylinder(0, 0, clockSpacing, clockRadius, clockHeight, 0xcba6f7)
+addCylinder(clockSpacing, 0, clockSpacing, clockRadius, clockHeight, 0xcba6f7)
+
 const pinRadius = 0.2
-const pinDistance = 1.5
+const pinDistance = clockSpacing / 2
 const pinHeight = 2
 class Pin {
     constructor(x, y) {
@@ -62,24 +76,23 @@ new Pin(-pinDistance, -pinDistance)
 new Pin(pinDistance, -pinDistance) 
 new Pin(pinDistance, pinDistance) 
 
-const clockRadius = 1
-const clockHeight = 1
-const clockSpacing = 2.5
-addCylinder(-clockSpacing, 0, -clockSpacing, clockRadius, clockHeight, 0xcba6f7)
-addCylinder(0, 0, -clockSpacing, clockRadius, clockHeight, 0xcba6f7)
-addCylinder(clockSpacing, 0, -clockSpacing, clockRadius, clockHeight, 0xcba6f7)
-addCylinder(-clockSpacing, 0, 0, clockRadius, clockHeight, 0xcba6f7)
-addCylinder(0, 0, 0, clockRadius, clockHeight, 0xcba6f7)
-addCylinder(clockSpacing, 0, 0, clockRadius, clockHeight, 0xcba6f7)
-addCylinder(-clockSpacing, 0, clockSpacing, clockRadius, clockHeight, 0xcba6f7)
-addCylinder(0, 0, clockSpacing, clockRadius, clockHeight, 0xcba6f7)
-addCylinder(clockSpacing, 0, clockSpacing, clockRadius, clockHeight, 0xcba6f7)
-
 const dialPins = {}
 const pinStates = {}
 const pinChildren = {}
 
-function animate() {
+const raycaster = new THREE.Raycaster()
+const pointer = new THREE.Vector2()
+
+window.addEventListener("click", event => {
+	pointer.x = (event.clientX / window.innerWidth) * 2 - 1
+	pointer.y = -(event.clientY / window.innerHeight) * 2 + 1
+	raycaster.setFromCamera(pointer, camera)
+	const intersects = raycaster.intersectObjects(scene.children)
+    if (intersects.length > 0)
+        intersects[0].object.material.color.set(0xff0000)
+})
+
+function render() {
 	controls.update()
     renderer.render(scene, camera)
 }
