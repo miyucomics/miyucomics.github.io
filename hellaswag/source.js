@@ -1,22 +1,29 @@
 const questionLabel = document.getElementById("question-label")
 const idLabel = document.getElementById("id-label")
 const descriptionLabel = document.getElementById("description-label")
-const answerChoiceContainers = Array.from(document.querySelectorAll(".choice"))
-const answerChoices = Array.from(document.querySelectorAll(".choice > p"))
+const answerChoices = Array.from(document.querySelectorAll(".choice"))
 
 let correctAnswer = 0
 
 for (let i = 0; i < 4; i++) {
-	answerChoiceContainers[i].addEventListener("click", function() { validateAnswer(i) })
+	answerChoices[i].addEventListener("click", function() { validateAnswer(i) })
+}
+
+function type(element, text) {
+    new Typed(element, {
+        strings: [text],
+        typeSpeed: 0,
+        backSpeed: 0,
+        cursorChar: ""
+    })
 }
 
 function prepareQuestion(scene) {
-	questionLabel.innerText = scene.activity_label
-	idLabel.innerText = "#" + scene.ind
-	descriptionLabel.innerText = scene.ctx
+    type(questionLabel, scene.activity_label)
+    type(idLabel, "#" + scene.ind)
+    type(descriptionLabel, scene.ctx)
 	for (let i = 0; i < 4; i++) {
-		answerChoiceContainers[i].style.borderColor = "#9399b2"
-		answerChoices[i].innerText = scene.endings[i]
+        type(answerChoices[i], scene.endings[i])
 	}
 	correctAnswer = scene.label
 }
@@ -24,8 +31,6 @@ function prepareQuestion(scene) {
 function validateAnswer(answer) {
 	if (answer == correctAnswer) {
 		prepareQuestion(scenes[Math.floor(Math.random() * scenes.length)])
-	} else {
-		answerChoiceContainers[answer].style.borderColor = "#f38ba8"
 	}
 }
 
