@@ -4,40 +4,38 @@
 }
 
 body {
-    background-color: #181825;
+    background-color: #1e1e2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+}
+
+.wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 90%;
+    gap: 30px;
 }
 
 .container {
-    width: calc(100% - 4px);
-    height: calc((100% - 20px) / 5);
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: space-between;
 }
 
-.fragment {
-    background-color: #1e1e2e;
-    width: calc((100% - 16px) / 4);
-    height: 100%;
-    transition: all 0.25s;
+.tile {
+    background-color: #181825;
+    transition: all 0.3s;
+    flex-grow: 1;
 }
 
-#heavenly-minutes-container .fragment {
-    width: calc((100% - 44px) / 11);
-}
-
-#sun {
-    width: calc(100% - 4px);
-}
-
-.fragment.active {
+.tile.active {
     background-color: #89b4fa;
+    box-shadow: 0px 0px 15px 0px #89b4fa;
 }
