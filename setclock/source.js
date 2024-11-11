@@ -1,3 +1,15 @@
+const parameters = new URLSearchParams(window.location.search)
+var root = document.querySelector(":root")
+if (parameters.get("background") != null) {
+    root.style.setProperty("--background-color", parameters.get("background"))
+}
+if (parameters.get("inactive") != null) {
+    root.style.setProperty("--inactive-color", parameters.get("inactive"))
+}
+if (parameters.get("active") != null) {
+    root.style.setProperty("--active-color", parameters.get("active"))
+}
+
 const sun = document.getElementById("sun")
 const heavenly_hours = Array.from(document.getElementsByClassName("heavenly-hours"))
 const heavenly_minutes = Array.from(document.getElementsByClassName("heavenly-minutes"))
