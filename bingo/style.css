@@ -41,11 +41,11 @@ body {
     background-color: #313244;
     cursor: pointer;
     line-height: 2;
-    font-size: 7px;
+    font-size: 14px;
 }
 
 .square.active {
     background-color: var(--color);
     box-shadow: 0 0 5px var(--color);
-    color: transparent;
+    color: #181825;
 }
