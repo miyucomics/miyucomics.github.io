@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
 :root {
-    --box-size: 150px;
+    --box-size: 100px;
     --color: #a6e3a1;
 }
 
@@ -9,7 +9,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    transition: all 0.1s;
+    transition: all 0.05s;
 
     color: #cdd6f4;
     user-select: none;
@@ -46,6 +46,6 @@ body {
 
 .square.active {
     background-color: var(--color);
-    box-shadow: 0 0 5px var(--color);
+    box-shadow: 0 0 10px var(--color);
     color: #181825;
 }
