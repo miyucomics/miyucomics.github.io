@@ -1,7 +1,7 @@
 :root {
-    --background-color: #1e1e2e;
-    --inactive-color: #181825;
-    --active-color: #89b4fa;
+    --background-color: #eff1f5;
+    --inactive-color: #ccd0da;
+    --active-color: #4c4f69;
 }
 
 * {
@@ -23,9 +23,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 90%;
-    height: 90%;
-    gap: 30px;
+    width: 20%;
+    height: 25%;
+    gap: 10px;
 }
 
 .container {
@@ -37,11 +37,12 @@ body {
 
 .tile {
     background-color: var(--inactive-color);
-    transition: all 0.3s;
+    transition: all 0.5s;
     flex-grow: 1;
 }
 
 .tile.active {
     background-color: var(--active-color);
-    box-shadow: 0px 0px 15px 0px var(--active-color);
+    box-shadow: 0px 5px 10px 2px var(--inactive-color);
+    transform: translateY(-6px);
 }
